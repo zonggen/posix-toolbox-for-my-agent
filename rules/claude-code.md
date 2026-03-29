@@ -1,0 +1,21 @@
+# CLI Tool Preferences
+
+Use these fast alternatives instead of slow defaults:
+
+| Instead of | Use | Key flags |
+| --- | --- | --- |
+| `find` | `fd` | `-e ext`, `-t f/d`, `-d depth`, `--max-results N` |
+| `grep -r` | `rg` | `--type py`, `--json`, `-m N` (max per file), `-C N` (context) |
+| `cat` | `bat --plain` | `-r START:END` (line range), `-n` (line numbers) |
+| `ls -R` / `tree` | `eza --tree` | `-L depth`, `--git-ignore` |
+| `wc -l` (code stats) | `tokei` | `--output json` |
+| `sed 's/old/new/'` | `sd 'old' 'new'` | Simpler regex, no escaping delimiters |
+| `jq` | `jaq` | Same syntax, 2-3x faster |
+| `du` | `dust` | `-d depth` |
+
+Rules:
+- Always type-filter: `rg --type py`, `fd -e ts` — skip irrelevant files
+- Prefer JSON output: `rg --json`, `tokei --output json` — structured > free text
+- Budget output: `fd --max-results 50`, `rg -m 5` — prevent context flooding
+- Targeted reads: use `bat -r START:END` when you have line numbers, never read entire large files
+- Chain search then read: search gives line numbers, read uses them
